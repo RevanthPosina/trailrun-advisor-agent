@@ -1,5 +1,3 @@
-# trailrun-advisor-agent
-
 # 🏃‍♂️ TrailRun Advisor Agent
 
 An AI-powered, weather-aware trail running assistant built using [n8n](https://n8n.io/). This project uses OpenAI, weather APIs, air quality data, and calendar integration to make real-time decisions about whether it's a good day for a trail run—and recommends the best trail accordingly.
