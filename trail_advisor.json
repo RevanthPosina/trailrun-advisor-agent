@@ -1,0 +1,320 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "3b0cae60-9c05-4a3c-830c-f6e579fe9e68",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        -60,
+        -80
+      ],
+      "id": "1eb26654-83a8-4a18-a4f3-b9746e554dd0",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "trail-run-session"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -20,
+        140
+      ],
+      "id": "f5d00c85-8abe-431a-8cfa-0e42954808dc",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        140
+      ],
+      "id": "f0152cb9-1882-49d7-a5e4-63ba618b471d",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "7Yr2zfx5yh0ERGnd",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "posinarevanth@gmail.com",
+          "mode": "list",
+          "cachedResultName": "posinarevanth@gmail.com"
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        120,
+        140
+      ],
+      "id": "b4240862-dfa7-44da-b46f-634f2219c390",
+      "name": "checkCalendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "iIsrvL7L9pav1Tjq",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "locationSelection": "coordinates",
+        "latitude": "39.1696",
+        "longitude": "86.5386"
+      },
+      "type": "n8n-nodes-base.openWeatherMapTool",
+      "typeVersion": 1,
+      "position": [
+        420,
+        140
+      ],
+      "id": "ae2a7f48-884a-46b7-bfce-fd0f5c853ba9",
+      "name": "getWeather",
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "t9gZmbydSYAzAfw0",
+          "name": "OpenWeatherMap account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "revanthaero@gmail.com",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        140
+      ],
+      "id": "25c699bb-ae39-4b36-b926-8e7108a86115",
+      "name": "sendEmail",
+      "webhookId": "b3a8ec6e-1f73-4945-b10b-09f0bd0ecd48",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "NgtH0T63kGQ3VAUN",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Makes an HTTP request and returns the response data from Airnow.gov",
+        "url": "https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=47404&distance=100&API_KEY=682FAD6F-C6FE-40CF-9232-BEFB931FB1DE",
+        "options": {},
+        "optimizeResponse": true
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        140
+      ],
+      "id": "a2e8d007-56f8-4d05-b25d-9986430586c3",
+      "name": "getAirQuality"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "12UizWO8bzU9LYM3h4CMCIBaLqzht2vh070AdFws6bt4",
+          "mode": "list",
+          "cachedResultName": "Trails",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12UizWO8bzU9LYM3h4CMCIBaLqzht2vh070AdFws6bt4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1531011102,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/12UizWO8bzU9LYM3h4CMCIBaLqzht2vh070AdFws6bt4/edit#gid=1531011102"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        280,
+        140
+      ],
+      "id": "0589d7c0-0369-4b42-824b-2c7762a34366",
+      "name": "getHikeList",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "fYK19NiafB2u9OMt",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -220,
+        -260
+      ],
+      "id": "841445be-963b-4bb0-a0e6-8a4a52763d83",
+      "name": "When chat message received",
+      "webhookId": "2bd765c3-b017-457b-b3e0-34739ba0ea33"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "checkCalendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getWeather": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sendEmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getAirQuality": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getHikeList": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f4f9169a-1067-4b72-a64c-8a2c3e37fdfc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "22cb4cd11d7ec16bdd4bf0adb4a375ed7e7c9420dac2215575f548ea05caaf8f"
+  },
+  "id": "CJci6a4smfKbbcHe",
+  "tags": []
+}
